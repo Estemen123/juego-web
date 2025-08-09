@@ -2,7 +2,6 @@
 import { useEffect } from "react";
 import menuScene from "./scenes/menu";
 import gameScene from "./scenes/game";
-import k from "@/lib/kaboomConfig";
 
 export default function Game() {
     useEffect(() => {
@@ -18,7 +17,7 @@ export default function Game() {
 
             k.scene("game", gameScene(k));
             k.scene("menu", menuScene(k));
-            k.debug.inspect = true;
+            //k.debug.inspect = true;
             k.go("menu");
         }
         
