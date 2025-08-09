@@ -4,24 +4,27 @@ import menuScene from "./scenes/menu";
 import gameScene from "./scenes/game";
 
 export default function Game() {
-  useEffect(() => {
-    async function startGame() {
-      // Importar kaboom solo en el cliente
-      const kaboom = (await import("kaboom")).default;
+    useEffect(() => {
+        async function startGame() {
+            const kaboom = (await import("kaboom")).default;
 
-      const k = kaboom({
-        width: 640,
-        height: 480,
-        background: [0, 0, 0],
-      });
+            const k = kaboom({
+                width: 1280,
+                height: 780,
+                background: [0, 0, 0],
+            });
 
-      k.scene("menu", menuScene(k));
-      k.scene("game", gameScene(k));
-      k.go("menu");
-    }
+            k.loadSprite("player", "/sprites/p1.png");
+            
+            k.scene("game", gameScene(k));
+            k.scene("menu", menuScene(k));
 
-    startGame();
-  }, []);
+            k
+            k.go("menu");
+        }
 
-  return null;
+        startGame();
+    }, []);
+
+    return null;
 }

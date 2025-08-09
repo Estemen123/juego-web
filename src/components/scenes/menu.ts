@@ -1,8 +1,13 @@
-export default function gameScene(k: any) {
+
+export default function menuScene(k: any) {
   return () => {
     k.add([
-      k.text("¡Juego Iniciado!"),
-      k.pos(100, 100),
+      k.text("Menú Principal - Presiona SPACE para jugar"),
+      k.pos(50, 100),
     ]);
+
+    k.onKeyPress("space", () => {
+      k.go("game");
+    });
   };
 }
