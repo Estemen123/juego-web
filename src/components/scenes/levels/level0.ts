@@ -1,4 +1,4 @@
-const level0 = (k: any) => {
+const level0 = (k: any, nevelIndex:number) => {
     k.loadSprite("grass", "/sprites/grass.png");
     k.loadSprite("wall", "/sprites/wall.png");
     k.loadSprite("coin", "/sprites/coin.png");
@@ -6,9 +6,9 @@ const level0 = (k: any) => {
     k.loadSprite("c","/sprites/cesped/Tileset_Ground_113.png")
     k.loadSprite("ca","/sprites/camino/Tileset_Road_18.png")
 
-    const level = [
+    const level = [[
         "wwwwwwwwwwwwwwwwwwwwwwwwwwww",
-        "w............@............w",
+        "w...f.........@............w",
         "w..........................w",
         "w....wwww........www.......w",
         "w..........................w",
@@ -25,7 +25,19 @@ const level0 = (k: any) => {
         "w..........................w",
         "w..................p.......w",
         "w..........................w",
-        "wwwwwwwwwwwwwwwwwwwwwwwwwwww",
+        "wwwwwwwwwwwwwwwwwwwwwwwwwwww",],
+        [
+        "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+        "w........................................w",
+        "w.............@................@..........w",
+        "w........................................w",
+        "w....wwwwwwww.................wwwwwwwww..w",
+        "w........................................w",
+        "w........................................w",
+        "w........@....................@...........w",
+        "w........................................w",
+        "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+    ]
     ];
 
     const levelConfig = {
