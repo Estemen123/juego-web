@@ -38,6 +38,10 @@ const colisionPlayer = (k: any, player: any) => {
         dialogPjt = 0;
     });
 
+    player.onCollide("pjt0",(pjt0:GameObj)=>{
+        k.go("game",1);
+    });
+    
     k.onKeyRelease("space", () => {
         switch (dialogPjt) {
             case 0:

@@ -15,7 +15,7 @@ export default function Game() {
                 background: [0, 0, 0, 1],
             });
 
-            k.scene("game", gameScene(k));
+            k.scene("game", (levelIndex: number) => gameScene(k, levelIndex)());
             k.scene("menu", menuScene(k));
             //k.debug.inspect = true;
             k.go("menu");
