@@ -10,8 +10,8 @@ export default function Game() {
 
             const k = kaboom({
                 global: true,
-                width: 1000,
-                height: 500,
+                width: 1500,
+                height: 700,
                 background: [0, 0, 0, 1],
             });
 

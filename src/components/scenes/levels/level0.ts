@@ -3,6 +3,8 @@ const level0 = (k: any) => {
     k.loadSprite("wall", "/sprites/wall.png");
     k.loadSprite("coin", "/sprites/coin.png");
     k.loadSprite("pic", "/sprites/pic.png");
+    k.loadSprite("c","/sprites/cesped/Tileset_Ground_113.png")
+    k.loadSprite("ca","/sprites/camino/Tileset_Road_18.png")
 
     const level = [
         "wwwwwwwwwwwwwwwwwwwwwwwwwwww",
@@ -28,16 +30,17 @@ const level0 = (k: any) => {
 
     const levelConfig = {
         tileWidth: 80,
-        tileHeight: 80,
+        tileHeight:80,
         tiles: {
-            w: () => [k.sprite("wall"), k.area(), k.body({ isStatic: true })],
-            ".": () => [k.sprite("grass")],
+            w: () => [k.sprite("ca"), k.area(), k.body({ isStatic: true }),k.scale(5)],
+            ".": () => [k.sprite("c"),k.area(),k.scale(5),],
             "@": () => [k.sprite("coin"), k.area(), k.scale(0.2), "coin"],
             p: () => [k.sprite("pic"), k.area(), k.scale(0.1),"pic"],
         },
     };
 
     return () => {
+        k.setBackground([0,50,0]);
         k.addLevel(level, levelConfig);
         // Agrega jugador, objetos, enemigos etc.
     };
