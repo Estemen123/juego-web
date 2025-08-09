@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import menuScene from "./scenes/menu";
 import gameScene from "./scenes/game";
+import k from "@/lib/kaboomConfig";
 
 export default function Game() {
     useEffect(() => {
@@ -9,20 +10,18 @@ export default function Game() {
             const kaboom = (await import("kaboom")).default;
 
             const k = kaboom({
-                width: 1280,
-                height: 780,
-                background: [0, 0, 0],
+                global: true,
+                width: 1000,
+                height: 500,
+                background: [0, 0, 0, 1],
             });
 
-            k.loadSprite("player", "/sprites/p1.png");
-            
             k.scene("game", gameScene(k));
             k.scene("menu", menuScene(k));
-
-            k
+            k.debug.inspect = true;
             k.go("menu");
         }
-
+        
         startGame();
     }, []);
 
