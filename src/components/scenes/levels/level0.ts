@@ -14,6 +14,8 @@ const level0 = (k: any, nevelIndex: number) => {
     k.loadSprite("wh2", "/sprites/casa/w2.png");
     k.loadSprite("wh4", "/sprites/casa/w4.png");
     k.loadSprite("cfH", "/sprites/casa/cofre.png");
+    k.loadSprite("transparente", "/sprites/agua/Tileset_Water_311.png");
+    k.loadSprite("fondoPueblo", "/sprites/mapas/pueblo1.png");
     k.loadSprite("keys", "/sprites/casa/keys.png", {
         sliceX: 3,
         anims: {
@@ -21,28 +23,38 @@ const level0 = (k: any, nevelIndex: number) => {
         },
     });
 
-    const level = [
-        [
-            "wwwwwwwwwwwwwwwwwwwwwwwwwwww",
-            "w...f.........@............w",
-            "w..........................w",
-            "w....wwww........www.......w",
-            "w..........................w",
-            "w...@...........@..........w",
-            "w..........................w",
-            "w......wwwwww..............w",
-            "w..........................w",
-            "w....@..............@......w",
-            "w..........................w",
-            "w..............ww..........w",
-            "w..........................w",
-            "w..........................w",
-            "w....@...............@.....w",
-            "w..........................w",
-            "w..................p.......w",
-            "w..........................w",
-            "wwwwwwwwwwwwwwwwwwwwwwwwwwww",
-        ],
+    const level = [[
+"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+"CVVVVVVVVVVVVVVVVVVVVVCCCVVVVVCCCCCCCCCC",
+"CVVVVVVVVVVVVVVVVVVVVVCCCVVVVVCCCCCCCCCC",
+"CVVVVVVVVVVVVVVVVVVVVVCLCCCVVVVVCCCCCCCC",
+"CVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCC",
+"CVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCC",
+"CVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCC",
+"CVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCCCC",
+"CVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCCCCC",
+"CVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCCCCCCC",
+"CCCCCCVVVVVVVVVVVVVVVVVCCCCCCCCCCCCCCCCC",
+"CCCCCCVVVVVVVVVVVVVCCCCCCCCCCCCCVVVVCCCC",
+"CCCCCCVVVVVVVVVVVCCCCCCCCCCCCCCCVVVVCCCC",
+"CCCOCCVVVVVVVVVVCCCCCCCCCCCCCCCCVVVVCCCC",
+"CVVVVVVVVVVVVVVVCCCCCCCCCCCCCCCCVVVVCCCC",
+"CVVVVVVVVVVVVVVCCCCCCCCCCCCCCCCCVVVVVVVC",
+"CVVVVVVVVVVVVVCCCCCCCCCCCCVVVVVVVVVVVVVC",
+"CVVVVVVVVVVVVVVCCCCCCCCVVVVVVVVVVVVVVVVC",
+"CVVVVVVVVVVVVVVVVCCCCCVVVVVVVVVVVVVVVVVC",
+"CVVVVVVVVVVVVVVVVVVCCVVVVVVVVVVVVVVVVVVC",
+"CVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCVVC",
+"CVVVVVVVVVVCCVVVVVVVVVVVVVVVVCCCCCCCCVVC",
+"CVVVVVVVVVVCCVVVVVVVVVVVVVVVVCCCCCCCCVVC",
+"CCCVVVVVVVVVVCCCVVVVVVVVVVVVVVVVVVCPCVVC",
+"CCCVVVVVVVVVVCCCCCVVVVVVVVVVVVVVVVVVVVVC",
+"CCCCVVVCCCCVVCCCCCCCCCCVVVVVVVVVVVVVVVVC",
+"CCCCCCCCCCCCCCCCCCCCCCVVVVCCCVVVVVVVVVVC",
+"CCCCCCCCCCCCCCCCCCCCCCVVVVCCCVVVVVVVVVVC",
+"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCVVVVVVVVVVC",
+"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+],
         [
             "008666663666639",
             "07000010000000@4",
@@ -92,6 +104,16 @@ const level0 = (k: any, nevelIndex: number) => {
         tileWidth: 80,
         tileHeight: 80,
         tiles: {
+            V: () => [
+                k.sprite("transparente"),
+                k.scale(5),
+            ],
+            C: () => [
+                k.sprite("transparente"),
+                k.area(),
+                k.body({ isStatic: true }),
+                k.scale(5),
+            ],
             w: () => [
                 k.sprite("ca"),
                 k.area(),
@@ -105,6 +127,7 @@ const level0 = (k: any, nevelIndex: number) => {
                 k.body({ isStatic: true }),
                 k.z(3),
             ],
+            P: () => [k.sprite("transparente"), k.area(), k.scale(0.1), "portal1"],
             f: () => [k.sprite("pic"), k.area(), k.scale(0.1), "pjt0"],
             ".": () => [k.sprite("c"), k.area(), k.scale(5)],
             "@": () => [k.sprite("coin"), k.area(), k.scale(0.2), "coin"],
@@ -180,6 +203,12 @@ const level0 = (k: any, nevelIndex: number) => {
         switch (nevelIndex) {
             case 0:
                 k.setBackground([0, 50, 0]);
+                k.add([
+                    k.sprite("fondoPueblo"),
+                    k.pos(0, 0),
+                    k.scale(5), // Escalar para que cubra más
+                    k.z(-1), // Asegura que esté detrás de todo
+                ]); // Asegura que esté detrás de todo
                 break;
             case 1:
                 k.setBackground([128, 128, 128]);
