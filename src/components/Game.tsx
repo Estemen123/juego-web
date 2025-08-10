@@ -16,8 +16,8 @@ export default function Game() {
                 background: [0, 0, 0, 1],
             });
 
-            k.scene("game", (levelIndex: number,score:number) =>
-                gameScene(k, levelIndex, score)()
+            k.scene("game", (levelIndex: number,inventario:number[]) =>
+                gameScene(k, levelIndex, inventario)()
             );
             k.scene("menu", menuScene(k));
             //k.debug.inspect = true;

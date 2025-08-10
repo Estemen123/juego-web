@@ -14,6 +14,12 @@ const level0 = (k: any, nevelIndex: number) => {
     k.loadSprite("wh2", "/sprites/casa/w2.png");
     k.loadSprite("wh4", "/sprites/casa/w4.png");
     k.loadSprite("cfH", "/sprites/casa/cofre.png");
+    k.loadSprite("keys", "/sprites/casa/keys.png", {
+        sliceX: 3,
+        anims: {
+            idle: { from: 0, to: 2, speed: 4, loop: true },
+        },
+    });
 
     const level = [
         [
@@ -99,9 +105,19 @@ const level0 = (k: any, nevelIndex: number) => {
                 k.body({ isStatic: true }),
                 k.z(3),
             ],
-            f: ()=> [k.sprite("pic"),k.area(),k.scale(0.1),"pjt0"],
+            f: () => [k.sprite("pic"), k.area(), k.scale(0.1), "pjt0"],
             ".": () => [k.sprite("c"), k.area(), k.scale(5)],
             "@": () => [k.sprite("coin"), k.area(), k.scale(0.2), "coin"],
+            // "@": () => {
+            //     const obj = k.add([
+            //         k.sprite("keys"),
+            //         k.area(),
+            //         k.scale(2),
+            //         "coin",
+            //     ]);
+            //     obj.play("idle");
+            //     return obj;
+            // },
             p: () => [k.sprite("pic"), k.area(), k.scale(0.1), "pic"],
             3: () => [
                 k.sprite("wallH"),

@@ -1,7 +1,11 @@
 import { GameObj } from "kaboom";
-import { Dispatch, SetStateAction } from "react";
 
-const colisionPlayer = (k: any, player: any,score:any, score1:number) => {
+const colisionPlayer = (
+    k: any,
+    player: any,
+    uiItemsList: any,
+    inventario: number[]
+) => {
     let contetCf: boolean[] = [true, true];
 
     let dialog: boolean = false;
@@ -33,8 +37,9 @@ const colisionPlayer = (k: any, player: any,score:any, score1:number) => {
 
     player.onCollide("coin", (coin: GameObj) => {
         k.destroy(coin);
-        score1++;
-        score.text = "Score: "+(score1);
+        inventario[0]++;
+        console.log(inventario);
+        uiItemsList[0].text = ": " + inventario[0];
     });
 
     player.onCollide("pic", (pic: GameObj) => {
@@ -50,8 +55,8 @@ const colisionPlayer = (k: any, player: any,score:any, score1:number) => {
     });
 
     player.onCollide("pjt0", (pjt0: GameObj) => {
-        console.log(score1);
-        k.go("game", 1, score1);
+        console.log(inventario);
+        k.go("game", 1, inventario);
     });
 
     player.onCollide("cofre1", (cf: GameObj) => {
@@ -72,9 +77,8 @@ const colisionPlayer = (k: any, player: any,score:any, score1:number) => {
                 case 0:
                     break;
                 case 1:
-                    console.log(line);
                     dialogText.text = lines[line];
-                    if (line > lines.length) line = 0;
+                    if (line >= lines.length - 1) line = 0;
                     else line++;
                     break;
 
@@ -86,10 +90,18 @@ const colisionPlayer = (k: any, player: any,score:any, score1:number) => {
                 switch (typeIteraccion) {
                     case 1:
                         if (contetCf[0]) {
-                            console.log("hola");
-                            contetCf[0]=false;
+                            contetCf[0] = false;
+                            dialogText.text="Encontraste una gema:";
+                            const item = dialogBox.add([
+                                k.sprite("gem"),
+                                k.scale(1.4),
+                                k.pos(300, 20),
+                            ]);
+                            setTimeout(()=>{
+                                item.destroy();
+                                dialogText.text = "";
+                            },2000)
                         } else {
-                            console.log("esta");
                             dialogText.text = "no hay nada";
                             setTimeout(() => {
                                 dialogText.text = "";
