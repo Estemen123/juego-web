@@ -1,13 +1,13 @@
 import { GameObj } from "kaboom";
+import { Dispatch, SetStateAction } from "react";
 
-const colisionPlayer = (k: any, player: any,score:any) => {
+const colisionPlayer = (k: any, player: any,score:any, score1:number) => {
     let contetCf: boolean[] = [true, true];
 
     let dialog: boolean = false;
     let interaccion: boolean = false;
 
     let typeIteraccion: number = 0;
-
     let dialogPjt: number = 0;
     let line: number = 0;
     const lines: string[] = [
@@ -33,8 +33,8 @@ const colisionPlayer = (k: any, player: any,score:any) => {
 
     player.onCollide("coin", (coin: GameObj) => {
         k.destroy(coin);
-        score.value +=1;
-        score.text = "Score: "+score.value;
+        score1++;
+        score.text = "Score: "+(score1);
     });
 
     player.onCollide("pic", (pic: GameObj) => {
@@ -50,7 +50,8 @@ const colisionPlayer = (k: any, player: any,score:any) => {
     });
 
     player.onCollide("pjt0", (pjt0: GameObj) => {
-        k.go("game", 1);
+        console.log(score1);
+        k.go("game", 1, score1);
     });
 
     player.onCollide("cofre1", (cf: GameObj) => {

@@ -1,6 +1,8 @@
 import managerPlayer from "@/lib/manager/MPlayer";
+import { Dispatch, SetStateAction } from "react";
 
-export default function player(k: any,score:any) {
+export default function player(k: any,score1:number,) {
+    console.log(score1);
     k.loadSprite("player", "/sprites/this.png", {
         sliceX: 4,
         sliceY: 4,
@@ -11,6 +13,7 @@ export default function player(k: any,score:any) {
     });
 
     return () => {
+        const score = k.add([k.text("Score: " + score1), k.pos(24, 24), { value: score1 }]);
         const player = k.add([
             k.sprite("player"),
             k.pos(200, 200),
@@ -19,7 +22,7 @@ export default function player(k: any,score:any) {
             k.anchor("center"),
             k.scale(0.2,0.2),
         ]);
-        const mp = managerPlayer(k, player,score);
+        const mp = managerPlayer(k, player,score,score1);
         mp();
     };
 }

@@ -7,7 +7,7 @@ export default function menuScene(k: any) {
     ]);
 
     k.onKeyPress("space", () => {
-      k.go("game",0);
+      k.go("game",0,0);
     });
   };
 }
