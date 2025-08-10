@@ -70,6 +70,19 @@ const colisionPlayer = (
         interaccion = false;
         typeIteraccion = 0;
     });
+    // items colliones
+
+    player.onCollide("keys", (keys: GameObj) => {
+        k.destroy(keys);
+        inventario[0]++;
+        uiItemsList[0].text = ": " + inventario[0];
+    });
+
+    player.onCollide("gems", (coin: GameObj) => {
+        k.destroy(coin);
+        inventario[1]++;
+        uiItemsList[1].text = ": " + inventario[1];
+    });
 
     k.onKeyRelease("space", () => {
         if (dialog) {
@@ -91,16 +104,18 @@ const colisionPlayer = (
                     case 1:
                         if (contetCf[0]) {
                             contetCf[0] = false;
-                            dialogText.text="Encontraste una gema:";
+                            dialogText.text = "Encontraste una gema:";
+                            inventario[1]++;
+                            uiItemsList[1].text = ": " + inventario[1];
                             const item = dialogBox.add([
                                 k.sprite("gem"),
                                 k.scale(1.4),
                                 k.pos(300, 20),
                             ]);
-                            setTimeout(()=>{
+                            setTimeout(() => {
                                 item.destroy();
                                 dialogText.text = "";
-                            },2000)
+                            }, 2000);
                         } else {
                             dialogText.text = "no hay nada";
                             setTimeout(() => {

@@ -1,3 +1,5 @@
+import generator from "@/lib/manager/generatorItems";
+
 const level0 = (k: any, nevelIndex: number) => {
     k.loadSprite("grass", "/sprites/grass.png");
     k.loadSprite("wall", "/sprites/wall.png");
@@ -22,7 +24,12 @@ const level0 = (k: any, nevelIndex: number) => {
             idle: { from: 0, to: 2, speed: 4, loop: true },
         },
     });
-
+    k.loadSprite("gems", "/sprites/casa/gems.png", {
+        sliceX: 3,
+        anims: {
+            idle: { from: 0, to: 2, speed: 4, loop: true },
+        },
+    });
     const level = [[
 "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
 "CVVVVVVVVVVVVVVVVVVVVVCCCVVVVVCCCCCCCCCC",
@@ -62,7 +69,7 @@ const level0 = (k: any, nevelIndex: number) => {
             "0700000111100004",
             "0700000000000004",
             "070000@000000004",
-            "070000200002000400000000000004",
+            "07000020000200044",
             "-------------------------------",
         ],
         [
@@ -100,7 +107,7 @@ const level0 = (k: any, nevelIndex: number) => {
         ],
     ];
 
-    const levelConfig = {
+    const levelConfig  = {
         tileWidth: 80,
         tileHeight: 80,
         tiles: {
@@ -130,7 +137,7 @@ const level0 = (k: any, nevelIndex: number) => {
             P: () => [k.sprite("transparente"), k.area(), k.scale(0.1), "portal1"],
             f: () => [k.sprite("pic"), k.area(), k.scale(0.1), "pjt0"],
             ".": () => [k.sprite("c"), k.area(), k.scale(5)],
-            "@": () => [k.sprite("coin"), k.area(), k.scale(0.2), "coin"],
+            "@": () => [k.sprite("keys"), k.area(), k.scale(2), "coin"],
             // "@": () => {
             //     const obj = k.add([
             //         k.sprite("keys"),
@@ -200,6 +207,7 @@ const level0 = (k: any, nevelIndex: number) => {
 
     return () => {
         k.addLevel(level[nevelIndex], levelConfig);
+
         switch (nevelIndex) {
             case 0:
                 k.setBackground([0, 50, 0]);
@@ -211,6 +219,20 @@ const level0 = (k: any, nevelIndex: number) => {
                 ]); // Asegura que esté detrás de todo
                 break;
             case 1:
+                generator(
+                    k,
+                    level[nevelIndex].length,
+                    level[nevelIndex][0].length,
+                    "keys",
+                    level[nevelIndex]
+                );
+                generator(
+                    k,
+                    level[nevelIndex].length,
+                    level[nevelIndex][0].length,
+                    "gems",
+                    level[nevelIndex]
+                );
                 k.setBackground([128, 128, 128]);
                 k.add([
                     k.sprite("fondo"),
