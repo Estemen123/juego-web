@@ -2,15 +2,14 @@ import type { GameObj } from "kaboom";
 import movePlayer from "./movePlayer";
 import colisionPlayer from "./colisionPlayer";
 
-export default function managerPlayer(k: any, player: any) {
+export default function managerPlayer(k: any, player: any, score:any) {
     
     let curretAnim = "idle";
-    let interacturar
 
     return () => {
         player.play("idle");
         movePlayer(k,player,curretAnim);
-        colisionPlayer(k,player);
+        colisionPlayer(k,player,score);
 
         player.onUpdate(() => {
             k.camPos(player.worldPos());

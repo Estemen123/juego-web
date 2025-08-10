@@ -1,6 +1,6 @@
 import managerPlayer from "@/lib/manager/MPlayer";
 
-export default function player(k: any) {
+export default function player(k: any,score:any) {
     k.loadSprite("player", "/sprites/this.png", {
         sliceX: 4,
         sliceY: 4,
@@ -13,13 +13,13 @@ export default function player(k: any) {
     return () => {
         const player = k.add([
             k.sprite("player"),
-            k.pos(100, 100),
+            k.pos(200, 200),
             k.area(),
             k.body(),
             k.anchor("center"),
             k.scale(0.2,0.2),
         ]);
-        const mp = managerPlayer(k, player);
+        const mp = managerPlayer(k, player,score);
         mp();
     };
 }
