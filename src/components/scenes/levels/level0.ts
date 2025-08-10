@@ -1,4 +1,5 @@
 import generator from "@/lib/manager/generatorItems";
+import personajes from "@/lib/manager/personajes";
 
 const level0 = (k: any, nevelIndex: number) => {
     k.loadSprite("grass", "/sprites/grass.png");
@@ -18,6 +19,8 @@ const level0 = (k: any, nevelIndex: number) => {
     k.loadSprite("cfH", "/sprites/casa/cofre.png");
     k.loadSprite("transparente", "/sprites/agua/Tileset_Water_311.png");
     k.loadSprite("fondoPueblo", "/sprites/mapas/pueblo1.png");
+    k.loadSprite("door", "/sprites/casa/door.png");
+    k.loadSprite("bread", "/sprites/casa/bread.png");
     k.loadSprite("keys", "/sprites/casa/keys.png", {
         sliceX: 3,
         anims: {
@@ -30,41 +33,60 @@ const level0 = (k: any, nevelIndex: number) => {
             idle: { from: 0, to: 2, speed: 4, loop: true },
         },
     });
-    const level = [[
-"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
-"CVVVVVVVVVVVVVVVVVVVVVCCCVVVVVCCCCCCCCCC",
-"CVVVVVVVVVVVVVVVVVVVVVCCCVVVVVCCCCCCCCCC",
-"CVVVVVVVVVVVVVVVVVVVVVCLCCCVVVVVCCCCCCCC",
-"CVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCC",
-"CVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCC",
-"CVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCC",
-"CVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCCCC",
-"CVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCCCCC",
-"CVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCCCCCCC",
-"CCCCCCVVVVVVVVVVVVVVVVVCCCCCCCCCCCCCCCCC",
-"CCCCCCVVVVVVVVVVVVVCCCCCCCCCCCCCVVVVCCCC",
-"CCCCCCVVVVVVVVVVVCCCCCCCCCCCCCCCVVVVCCCC",
-"CCCOCCVVVVVVVVVVCCCCCCCCCCCCCCCCVVVVCCCC",
-"CVVVVVVVVVVVVVVVCCCCCCCCCCCCCCCCVVVVCCCC",
-"CVVVVVVVVVVVVVVCCCCCCCCCCCCCCCCCVVVVVVVC",
-"CVVVVVVVVVVVVVCCCCCCCCCCCCVVVVVVVVVVVVVC",
-"CVVVVVVVVVVVVVVCCCCCCCCVVVVVVVVVVVVVVVVC",
-"CVVVVVVVVVVVVVVVVCCCCCVVVVVVVVVVVVVVVVVC",
-"CVVVVVVVVVVVVVVVVVVCCVVVVVVVVVVVVVVVVVVC",
-"CVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCVVC",
-"CVVVVVVVVVVCCVVVVVVVVVVVVVVVVCCCCCCCCVVC",
-"CVVVVVVVVVVCCVVVVVVVVVVVVVVVVCCCCCCCCVVC",
-"CCCVVVVVVVVVVCCCVVVVVVVVVVVVVVVVVVCPCVVC",
-"CCCVVVVVVVVVVCCCCCVVVVVVVVVVVVVVVVVVVVVC",
-"CCCCVVVCCCCVVCCCCCCCCCCVVVVVVVVVVVVVVVVC",
-"CCCCCCCCCCCCCCCCCCCCCCVVVVCCCVVVVVVVVVVC",
-"CCCCCCCCCCCCCCCCCCCCCCVVVVCCCVVVVVVVVVVC",
-"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCVVVVVVVVVVC",
-"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
-],
+    k.loadSprite("breads", "/sprites/casa/breads.png", {
+        sliceX: 3,
+        anims: {
+            idle: { from: 0, to: 2, speed: 4, loop: true },
+        },
+    });
+    k.loadSprite("p1", "/sprites/personajes/p1.png", {
+        sliceX: 3,
+        anims: {
+            idle: { from: 0, to: 2, speed: 4, loop: true },
+        },
+    });
+    k.loadSprite("p2", "/sprites/personajes/p2.png", {
+        sliceX: 3,
+        anims: {
+            idle: { from: 0, to: 2, speed: 4, loop: true },
+        },
+    });
+    const level = [
+        [
+            "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+            "CVVVVVVVVVVVVVVVVVVVVVCCCVVVVVCCCCCCCCCC",
+            "CVVVVVVVVVVVVVVVVVVVVVCCCVVVVVCCCCCCCCCC",
+            "CVVVVVVVVVVVVVVVVVVVVVCLCCCVVVVVCCCCCCCC",
+            "CVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCC",
+            "CVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCC",
+            "CVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCC",
+            "CVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCCCC",
+            "CVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCCCCC",
+            "CVVVVVVVVVVVVVVVVVVVVVVVCCCCCCCCCCCCCCCC",
+            "CCCCCCVVVVVVVVVVVVVVVVVCCCCCCCCCCCCCCCCC",
+            "CCCCCCVVVVVVVVVVVVVCCCCCCCCCCCCCVVVVCCCC",
+            "CCCCCCVVVVVVVVVVVCCCCCCCCCCCCCCCVVVVCCCC",
+            "CCCOCCVVVVVVVVVVCCCCCCCCCCCCCCCCVVVVCCCC",
+            "CVVVVVVVVVVVVVVVCCCCCCCCCCCCCCCCVVVVCCCC",
+            "CVVVVVVVVVVVVVVCCCCCCCCCCCCCCCCCVVVVVVVC",
+            "CVVVVVVVVVVVVVCCCCCCCCCCCCVVVVVVVVVVVVVC",
+            "CVVVVVVVVVVVVVVCCCCCCCCVVVVVVVVVVVVVVVVC",
+            "CVVVVVVVVVVVVVVVVCCCCCVVVVVVVVVVVVVVVVVC",
+            "CVVVVVVVVVVVVVVVVVVCCVVVVVVVVVVVVVVVVVVC",
+            "CVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVCCCCCCVVC",
+            "CVVVVVVVVVVCCVVVVVVVVVVVVVVVVCCCCCCCCVVC",
+            "CVVVVVVVVVVCCVVVVVVVVVVVVVVVVCCCCCCCCVVC",
+            "CCCVVVVVVVVVVCCCVVVVVVVVVVVVVVVVVVCPCVVC",
+            "CCCVVVVVVVVVVCCCCCVVVVVVVVVVVVVVVVVVVVVC",
+            "CCCCVVVCCCCVVCCCCCCCCCCVVVVVVVVVVVVVVVVC",
+            "CCCCCCCCCCCCCCCCCCCCCCVVVVCCCVVVVVVVVVVC",
+            "CCCCCCCCCCCCCCCCCCCCCCVVVVCCCVVVVVVVVVVC",
+            "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCVVVVVVVVVVC",
+            "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+        ],
         [
             "008666663666639",
-            "07000010000000@4",
+            "07Y00010000000@4",
             "07000020c0200004",
             "0700000111100004",
             "0700000000000004",
@@ -73,48 +95,32 @@ const level0 = (k: any, nevelIndex: number) => {
             "-------------------------------",
         ],
         [
-            "wwwwwwwwwwwwwwwwwwwwwwwwwwww",
-            "w...f.........@............w",
-            "w..........................w",
-            "w....wwww........www.......w",
-            "w..........................w",
-            "w...@...........@..........w",
-            "w..........................w",
-            "w......wwwwww..............w",
-            "w..........................w",
-            "w....@..............@......w",
-            "w..........................w",
-            "w..............ww..........w",
-            "w..........................w",
-            "w..........................w",
-            "w....@...............@.....w",
-            "w..........................w",
-            "w..................p.......w",
-            "w..........................w",
-            "wwwwwwwwwwwwwwwwwwwwwwwwwwww",
+            "008666663666639",
+            "07Y000100000004",
+            "07000020c020004",
+            "070000011110004",
+            "070000000000004",
+            "070000000000004",
+            "070000200002004",
+            "----------------",
         ],
         [
-            "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
-            "w........................................w",
-            "w.............@................@..........w",
-            "w........................................w",
-            "w....wwwwwwww.................wwwwwwwww..w",
-            "w........................................w",
-            "w........................................w",
-            "w........@....................@...........w",
-            "w........................................w",
-            "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+            "----------------",
+            "07Y000100000004",
+            "07000020c020004",
+            "070000011110004",
+            "070000000000004",
+            "070000000000004",
+            "070000200002004",
+            "----------------",
         ],
     ];
 
-    const levelConfig  = {
+    const levelConfig = {
         tileWidth: 80,
         tileHeight: 80,
         tiles: {
-            V: () => [
-                k.sprite("transparente"),
-                k.scale(5),
-            ],
+            V: () => [k.sprite("transparente"), k.scale(5)],
             C: () => [
                 k.sprite("transparente"),
                 k.area(),
@@ -134,20 +140,33 @@ const level0 = (k: any, nevelIndex: number) => {
                 k.body({ isStatic: true }),
                 k.z(3),
             ],
-            P: () => [k.sprite("transparente"), k.area(), k.scale(0.1), "portal1"],
+            P: () => [
+                k.sprite("transparente"),
+                k.area(),
+                k.scale(0.1),
+                "portal1",
+            ],
+            O: () => [
+                k.sprite("transparente"),
+                k.area(),
+                k.scale(0.1),
+                "portal2",
+            ],
+            L: () => [
+                k.sprite("transparente"),
+                k.area(),
+                k.scale(0.1),
+                "portal3",
+            ],
+            Y: () => [
+                k.sprite("door"),
+                k.area(),
+                k.scale(-0.4, 0.3),
+                "portal4",
+            ],
             f: () => [k.sprite("pic"), k.area(), k.scale(0.1), "pjt0"],
             ".": () => [k.sprite("c"), k.area(), k.scale(5)],
             "@": () => [k.sprite("keys"), k.area(), k.scale(2), "coin"],
-            // "@": () => {
-            //     const obj = k.add([
-            //         k.sprite("keys"),
-            //         k.area(),
-            //         k.scale(2),
-            //         "coin",
-            //     ]);
-            //     obj.play("idle");
-            //     return obj;
-            // },
             p: () => [k.sprite("pic"), k.area(), k.scale(0.1), "pic"],
             3: () => [
                 k.sprite("wallH"),
@@ -200,8 +219,6 @@ const level0 = (k: any, nevelIndex: number) => {
                 k.body({ isStatic: true }),
                 "cofre1",
             ],
-            // 0: () => [k.sprite("floorH1"), k.area(), k.scale(1.41),],
-            // 1: () => [k.sprite("floorH2"), k.area(), k.scale(1.41)],
         },
     };
 
@@ -211,14 +228,107 @@ const level0 = (k: any, nevelIndex: number) => {
         switch (nevelIndex) {
             case 0:
                 k.setBackground([0, 50, 0]);
+
                 k.add([
                     k.sprite("fondoPueblo"),
                     k.pos(0, 0),
                     k.scale(5), // Escalar para que cubra más
                     k.z(-1), // Asegura que esté detrás de todo
                 ]); // Asegura que esté detrás de todo
+                personajes(k);
+                generator(
+                    k,
+                    level[nevelIndex].length,
+                    level[nevelIndex][0].length,
+                    "breads",
+                    level[nevelIndex]
+                );
+                generator(
+                    k,
+                    level[nevelIndex].length,
+                    level[nevelIndex][0].length,
+                    "breads",
+                    level[nevelIndex]
+                );
+                generator(
+                    k,
+                    level[nevelIndex].length,
+                    level[nevelIndex][0].length,
+                    "breads",
+                    level[nevelIndex]
+                );
+                generator(
+                    k,
+                    level[nevelIndex].length,
+                    level[nevelIndex][0].length,
+                    "breads",
+                    level[nevelIndex]
+                );
+                generator(
+                    k,
+                    level[nevelIndex].length,
+                    level[nevelIndex][0].length,
+                    "breads",
+                    level[nevelIndex]
+                );
                 break;
             case 1:
+                generator(
+                    k,
+                    level[nevelIndex].length,
+                    level[nevelIndex][0].length,
+                    "keys",
+                    level[nevelIndex]
+                );
+                generator(
+                    k,
+                    level[nevelIndex].length,
+                    level[nevelIndex][0].length,
+                    "gems",
+                    level[nevelIndex]
+                );
+                k.setBackground([128, 128, 128]);
+                k.add([
+                    k.sprite("fondo"),
+                    k.pos(0, 0),
+                    k.scale(3), // Escalar para que cubra más
+                    k.z(-1), // Asegura que esté detrás de todo
+                ]); // Asegura que esté detrás de todo
+                break;
+            case 2:
+                const p1 = k.add([
+                    k.sprite("p2"),
+                    k.pos(200, 200),
+                    k.area(),
+                    k.scale(0.1, 0.1),
+                    k.z(2),
+                    "p2",
+                ]);
+                p1.play("idle");
+                generator(
+                    k,
+                    level[nevelIndex].length,
+                    level[nevelIndex][0].length,
+                    "keys",
+                    level[nevelIndex]
+                );
+                generator(
+                    k,
+                    level[nevelIndex].length,
+                    level[nevelIndex][0].length,
+                    "gems",
+                    level[nevelIndex]
+                );
+                k.setBackground([128, 128, 128]);
+                k.add([
+                    k.sprite("fondo"),
+                    k.pos(0, 0),
+                    k.scale(3), // Escalar para que cubra más
+                    k.z(-1), // Asegura que esté detrás de todo
+                ]); // Asegura que esté detrás de todo
+                break;
+            case 3:
+                
                 generator(
                     k,
                     level[nevelIndex].length,

@@ -20,7 +20,7 @@ export default function Game() {
                 gameScene(k, levelIndex, inventario)()
             );
             k.scene("menu", menuScene(k));
-            k.debug.inspect = true;
+            //k.debug.inspect = true;
             k.go("menu");
         }
 

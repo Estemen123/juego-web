@@ -13,7 +13,7 @@ export default function player(k: any, inventaio: number[]) {
     return () => {
         const player = k.add([
             k.sprite("player"),
-            k.pos(200, 200),
+            k.pos(300, 300),
             k.area(),
             k.body(),
             k.anchor("center"),

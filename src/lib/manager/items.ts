@@ -19,6 +19,7 @@ export default function uiItems(k: any, inventario: number[]) {
 
     createUiItem("key", 0);
     createUiItem("gem", 1);
+    createUiItem("bread",2);
 
     return uiItems; // Retornamos las referencias para poder modificarlas
 }
